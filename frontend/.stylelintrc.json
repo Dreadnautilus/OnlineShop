@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "formatter": "stylelint-checkstyle-formatter",
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-prettier"
+  ],
+  "rules": {
+    "prettier/prettier": true,
+    "no-descending-specificity": null,
+    "at-rule-no-unknown": null,
+    "selector-pseudo-class-no-unknown": null,
+    "selector-id-pattern": null,
+    "color-function-notation": "legacy",
+    "alpha-value-notation": "number",
+    "font-family-name-quotes": "always-unless-keyword",
+    "function-url-quotes": "always"
+  }
+}
