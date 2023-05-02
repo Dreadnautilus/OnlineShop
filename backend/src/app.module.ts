@@ -1,29 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { HeaderModule } from './api/frontend/header/header.module';
-import { BanerModule } from './api/frontend/baner/baner.module';
-import { SubscribesModule } from './api/frontend/subscribes/subscribes.module';
-import { CatalogModule } from './api/catalog/catalog.module';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { ConfigModule} from '@nestjs/config';
+import { HeaderModule } from './api/header/header.module';
+import { Menu } from './api/header/models/menu.model';
+
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://bp-mongo-db:27017/frontend', {
-      connectionName: 'frontend'
+    ConfigModule.forRoot({envFilePath: '../../.env', isGlobal: true}),
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: Number(process.env.PORT),
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DATABASE,
+      models: [Menu],
+      autoLoadModels: true
     }),
-    MongooseModule.forRoot('mongodb://bp-mongo-db:27017/catalog', {
-      connectionName: 'catalog'
-    }),
-    MongooseModule.forRoot('mongodb://bp-mongo-db:27017/users', {
-      connectionName: 'users'
-    }),
-    HeaderModule,
-    BanerModule,
-    SubscribesModule,
-    CatalogModule,
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+    HeaderModule
+],
+  providers: [],
 })
 export class AppModule {}
