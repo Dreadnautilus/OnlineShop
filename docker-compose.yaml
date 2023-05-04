@@ -1,19 +1,19 @@
 version: "3.9"
 services:
-  # frontend:
-  #   container_name: frontend
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile.local
-  #   restart: always
-  #   env_file: .env
-  #   ports:
-  #     - "${FRONTEND_PORT}:${FRONTEND_PORT}"
-  #   volumes:
-  #     - "./frontend/src:/usr/src/app/src"
-  #   networks:
-  #     - bp-network
-  #   command: "npm start"
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.local
+    restart: always
+    env_file: .env
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    volumes:
+      - "./frontend/src:/usr/src/app/src"
+    networks:
+      - bp-network
+    command: "npm start"
   backend:
       container_name: backend
       build:
@@ -43,7 +43,7 @@ services:
         POSTGRES_USER: ${POSTGRES_USERNAME}
         POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       volumes:
-        - ./backend/storage/db:/data/db
+        - ./backend/storage/db:/var/lib/postgresql/data
       ports: 
         - ${POSTGRES_PORT}:${POSTGRES_PORT}
       networks:
