@@ -6,8 +6,8 @@ import { SubMenuList } from './models/submenulist.model';
 
 @Injectable()
 export class HeaderService {
-
     constructor(@InjectModel(Menu) private menuRepository: typeof Menu) {}
+
     async getMenu() {
         return await this.menuRepository.findAll({
             include: [{
