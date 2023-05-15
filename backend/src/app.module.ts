@@ -5,6 +5,8 @@ import { HeaderModule } from './api/header/header.module';
 import { Menu } from './api/header/models/menu.model';
 import { SubMenu } from './api/header/models/submenu.model';
 import { SubMenuList } from './api/header/models/submenulist.model';
+import { HomeModule } from './api/home/home.module';
+import { Baner } from './api/home/models/baner.model';
 
 
 @Module({
@@ -17,10 +19,11 @@ import { SubMenuList } from './api/header/models/submenulist.model';
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      models: [Menu, SubMenu, SubMenuList],
+      models: [Menu, SubMenu, SubMenuList, Baner],
       autoLoadModels: true
     }),
-    HeaderModule
+    HeaderModule,
+    HomeModule
 ],
   providers: [],
 })

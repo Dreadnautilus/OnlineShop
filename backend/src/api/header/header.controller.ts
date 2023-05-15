@@ -6,7 +6,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 @Controller('api/header/menu')
 export class HeaderController {
     constructor(private headerService: HeaderService) {}
-
+    
     @ApiOperation({summary: 'Get menu list in JSON format'})
     @ApiResponse({status: 200})
     @Get()
